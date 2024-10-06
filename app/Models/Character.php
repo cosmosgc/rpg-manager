@@ -8,7 +8,12 @@ class Character extends Model
     protected $fillable = [
         'name',
         'description',
-        'stats',
+        'strength',       // New stat field
+        'dexterity',      // New stat field
+        'constitution',   // New stat field
+        'intelligence',   // New stat field
+        'wisdom',         // New stat field
+        'charisma',       // New stat field
         'hitpoints',
         'mana',
         'class',       // New field for character class

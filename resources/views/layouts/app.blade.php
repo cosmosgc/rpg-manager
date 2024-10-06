@@ -30,8 +30,8 @@
         <div class="menu-items">
         <a href="{{route('home')}}"><span class="icon"><i class="fas fa-home"></i></span> Home</a>
         <a href="{{route('characters.index')}}"><span class="icon"><i class="fas fa-user"></i></span> Personagens</a>
-        <a href="#"><span class="icon"><i class="fas fa-briefcase"></i></span> Skills</a>
-        <a href="#"><span class="icon"><i class="fas fa-gem"></i></span> Items</a>
+        <a href="{{route('skills.index')}}"><span class="icon"><i class="fas fa-briefcase"></i></span> Skills</a>
+        <a href="{{route('items.index')}}"><span class="icon"><i class="fas fa-gem"></i></span> Items</a>
         <a href="#"><span class="icon"><i class="fas fa-ghost"></i></span> Monstros</a>
         <a href="#"><span class="icon"><i class="fas fa-map"></i></span> Cenas</a>
 
@@ -68,6 +68,16 @@
 
         toggleBtn.addEventListener('click', function() {
             sidebar.classList.toggle('open');
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl, {
+                    html: true
+                })
+            })
         });
     </script>
 </body>

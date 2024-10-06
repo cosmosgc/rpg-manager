@@ -14,7 +14,6 @@ return new class extends Migration
         Schema::create('inventories', function (Blueprint $table) {
             $table->id();
             $table->foreignId('character_id')->constrained()->onDelete('cascade');
-            $table->json('items'); // Store items as a JSON field
             $table->timestamps();
         });
     }

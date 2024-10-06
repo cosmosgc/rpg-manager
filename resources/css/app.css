@@ -183,3 +183,40 @@ input:focus, textarea:focus, select:focus {
     outline: none;
     border-color: #888888; /* Focus effect */
 }
+
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.skill-icon {
+    position: relative;
+    text-align: center;
+}
+
+.skill-icon img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.skill-level {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.remove-skill-form {
+    margin-top: 10px;
+}
+
+.btn-danger {
+    font-size: 12px;
+}
+.card-img-top, .inventory-item img{
+    image-rendering: pixelated;
+}

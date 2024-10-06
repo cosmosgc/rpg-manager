@@ -16,7 +16,14 @@ return new class extends Migration
             $table->string('name');
             $table->text('description')->nullable();
             $table->integer('exp')->default(1);
-            $table->json('stats'); // Store stats in JSON (e.g., strength, dexterity, etc.)
+             // Individual columns for each stat with default values
+            $table->integer('strength')->default(0);
+            $table->integer('dexterity')->default(0);
+            $table->integer('constitution')->default(0);
+            $table->integer('intelligence')->default(0);
+            $table->integer('wisdom')->default(0);
+            $table->integer('charisma')->default(0);
+
             $table->integer('hitpoints');
             $table->integer('mana');
             $table->string('class')->nullable(); // New column for character class
