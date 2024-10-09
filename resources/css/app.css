@@ -220,3 +220,65 @@ input:focus, textarea:focus, select:focus {
 .card-img-top, .inventory-item img{
     image-rendering: pixelated;
 }
+.character-card {
+    background-color: #2c2f33;
+    padding: 20px;
+    border-radius: 10px;
+    color: white;
+}
+.character-header {
+    display: flex;
+    align-items: center;
+}
+.character-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+    object-fit: cover;
+    object-position: 0 0;
+}
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+.stat-box {
+    background-color: #23272a;
+    padding: 10px;
+    border-radius: 8px;
+    text-align: center;
+}
+.hp-box {
+    background-color: #7289da;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns as needed */
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.inventory-item {
+    position: relative;
+    text-align: center;
+}
+
+.inventory-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.remove-item-form {
+    margin-top: 10px;
+}
+
+.btn-danger {
+    font-size: 12px;
+}

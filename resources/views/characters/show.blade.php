@@ -57,42 +57,30 @@ $stats = json_decode($character->stats, true);
         <div class="character-skills mt-5">
             <h2>Skills</h2>
             @if($character->skills->isNotEmpty())
-                <ul class="list-group">
-                    @foreach($character->skills as $skill)
-                        <li class="list-group-item">
-                            <strong>{{ $skill->name }}</strong> (Level: {{ $skill->pivot->level }}) - {{ $skill->description }}
-                        </li>
-                    @endforeach
-                </ul>
-            @else
-                <p>No skills assigned to this character.</p>
-            @endif
-        </div>
-        <div class="character-skills mt-5">
-            <h2>Skills</h2>
-            @if($character->skills->isNotEmpty())
                 <div class="skills-grid">
                     @foreach($character->skills as $skill)
-                        <div class="skill-icon" tabindex="0"
-                            data-bs-toggle="popover"
-                            data-bs-trigger="hover focus"
-                            data-bs-content="<strong>{{ $skill->name }}</strong><br>Level: {{ $skill->pivot->level }}<br>{{ $skill->description }}">
-                            <img src="{{ asset('storage/' . $skill->image_path) }}" alt="{{ $skill->name }}">
+                        <div>
+                            <div class="skill-icon" tabindex="0"
+                                data-bs-toggle="popover"
+                                data-bs-trigger="hover focus"
+                                data-bs-content="<strong>{{ $skill->name }}</strong><br>Level: {{ $skill->pivot->level }}<br>{{ $skill->description }}">
+                                <img src="{{ asset('storage/' . $skill->image_path) }}" alt="{{ $skill->name }}">
 
-                            <!-- Display Level Below the Image -->
-                            <p class="skill-level">Level: {{ $skill->pivot->level }}</p>
-
+                                <!-- Display Level Below the Image -->
+                                <p class="skill-level">Level: {{ $skill->pivot->level }}</p>
+                            </div>
                             <!-- Remove Skill Form -->
                             <form action="{{ route('skills.remove', ['character' => $character->id, 'skill' => $skill->id]) }}" method="POST" class="remove-skill-form">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
+                                <button type="submit" class="btn btn-danger btn-sm">Remover</button>
                             </form>
                         </div>
+
                     @endforeach
                 </div>
             @else
-                <p>No skills assigned to this character.</p>
+                <p>Nenhuma skill nesse personagem.</p>
             @endif
 
             <!-- Add Skill Form -->
@@ -100,7 +88,7 @@ $stats = json_decode($character->stats, true);
             <form action="{{ route('skills.add', $character->id) }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="skill_id">Choose Skill:</label>
+                    <label for="skill_id">Escolha uma Skill:</label>
                     <select name="skill_id" id="skill_id" class="form-control">
                         @foreach($availableSkills as $availableSkill)
                             <option value="{{ $availableSkill->id }}">{{ $availableSkill->name }}</option>
@@ -116,10 +104,11 @@ $stats = json_decode($character->stats, true);
         </div>
 
         <div class="inventory mt-5">
-            <h2>Inventory</h2>
+            <h2>Inventário</h2>
             @if($character->inventory && $character->inventory->items->isNotEmpty())
                 <div class="inventory-grid">
                     @foreach($character->inventory->items as $item)
+                    <div>
                         <div class="inventory-item" tabindex="0"
                             data-bs-toggle="popover"
                             data-bs-trigger="hover focus"
@@ -128,28 +117,29 @@ $stats = json_decode($character->stats, true);
                             <img src="{{ asset('storage/' . $item->image_path) }}" alt="{{ $item->name }}">
 
                             <!-- Display Quantity Below the Image -->
-                            <p class="item-quantity">Quantity: {{ $item->pivot->quantity }}</p>
-
-                            <!-- Remove Item Form -->
-                            <form action="{{ route('inventory.remove', ['character' => $character->id, 'item' => $item->id]) }}" method="POST" class="remove-item-form">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-danger btn-sm">Remove</button>
-                            </form>
+                            <p class="item-quantity">Quantidade: {{ $item->pivot->quantity }}</p>
                         </div>
+                        <!-- Remove Item Form -->
+                        <form action="{{ route('inventory.remove', ['character' => $character->id, 'item' => $item->id]) }}" method="POST" class="remove-item-form">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger btn-sm">Remover</button>
+                        </form>
+                    </div>
+
                     @endforeach
                 </div>
             @else
-                <p>No items in inventory.</p>
+                <p>No items ao Inventário.</p>
             @endif
         </div>
 
         <div class="add-item mt-5">
-            <h2>Add Item to Inventory</h2>
+            <h2>Add Item ao Inventário</h2>
             <form action="{{ isset($character->inventory) ? route('inventory.add', $character->inventory->id) : '#' }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="item">Select Item</label>
+                    <label for="item">Selecionar Item</label>
                     <select name="item_id" id="item" class="form-control">
                         @foreach($items as $item)
                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -157,10 +147,10 @@ $stats = json_decode($character->stats, true);
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="quantity">Quantity</label>
+                    <label for="quantity">Quantidade</label>
                     <input type="number" name="quantity" id="quantity" class="form-control" value="1" min="1">
                 </div>
-                <button type="submit" class="btn btn-primary" {{ !isset($character->inventory) ? 'disabled' : '' }}>Add to Inventory</button>
+                <button type="submit" class="btn btn-primary" {{ !isset($character->inventory) ? 'disabled' : '' }}>adicionar ao inventário</button>
             </form>
 
         </div>
@@ -170,67 +160,9 @@ $stats = json_decode($character->stats, true);
 
 
 <style>
-    .character-card {
-        background-color: #2c2f33;
-        padding: 20px;
-        border-radius: 10px;
-        color: white;
-    }
-    .character-header {
-        display: flex;
-        align-items: center;
-    }
-    .character-image {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 10px;
-    }
-    .stat-box {
-        background-color: #23272a;
-        padding: 10px;
-        border-radius: 8px;
-        text-align: center;
-    }
-    .hp-box {
-        background-color: #7289da;
-        padding: 15px;
-        border-radius: 8px;
-        text-align: center;
-    }
+
 </style>
 <style>
-    .inventory-grid {
-        display: grid;
-        grid-template-columns: repeat(10, 1fr); /* Adjust the number of columns as needed */
-        gap: 15px;
-        margin-top: 15px;
-    }
 
-    .inventory-item {
-        position: relative;
-        text-align: center;
-    }
-
-    .inventory-item img {
-        width: 80px;
-        height: 80px;
-        object-fit: cover;
-        border-radius: 8px;
-        border: 1px solid #ccc;
-    }
-
-    .remove-item-form {
-        margin-top: 10px;
-    }
-
-    .btn-danger {
-        font-size: 12px;
-    }
 </style>
 @endsection

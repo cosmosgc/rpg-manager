@@ -23,8 +23,10 @@
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <img src="https://via.placeholder.com/70" alt="Profile Picture">
-            <h4>RPG</h4>
-            <span>Manager</span>
+
+            @auth
+                <h4>{{auth()->user()->name}}</h4>
+            @endauth
         </div>
 
         <div class="menu-items">
@@ -32,7 +34,7 @@
         <a href="{{route('characters.index')}}"><span class="icon"><i class="fas fa-user"></i></span> Personagens</a>
         <a href="{{route('skills.index')}}"><span class="icon"><i class="fas fa-briefcase"></i></span> Skills</a>
         <a href="{{route('items.index')}}"><span class="icon"><i class="fas fa-gem"></i></span> Items</a>
-        <a href="#"><span class="icon"><i class="fas fa-ghost"></i></span> Monstros</a>
+        <a href="{{route('monsters.index')}}"><span class="icon"><i class="fas fa-ghost"></i></span> Monstros</a>
         <a href="#"><span class="icon"><i class="fas fa-map"></i></span> Cenas</a>
 
 
@@ -46,7 +48,7 @@
 
             <a href="#"><span class="icon"><i class="fas fa-moon"></i></span> Dark Mode</a>
             <a href="#"><span class="icon"><i class="fas fa-cog"></i></span> Settings</a>
-            <a href="#"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Log out</a>
+            <a href="{{route('logout')}}"><span class="icon"><i class="fas fa-sign-out-alt"></i></span> Log out</a>
         </div>
     </nav>
 
