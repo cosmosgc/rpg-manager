@@ -65,11 +65,11 @@ Este é um projeto de gerenciamento de personagens, habilidades, itens e monstro
 
 1. Clone o repositório:
     ```bash
-    git clone https://github.com/seu-usuario/seu-repositorio.git
+    git clone https://github.com/cosmosgc/rpg-manager
     ```
 2. Navegue até o diretório do projeto:
     ```bash
-    cd seu-repositorio
+    cd rpg-manager
     ```
 3. Instale as dependências:
     ```bash
@@ -79,10 +79,6 @@ Este é um projeto de gerenciamento de personagens, habilidades, itens e monstro
     - Crie um arquivo `.env` com base no `.env.example` e configure as variáveis de ambiente, como banco de dados e credenciais de API.
     ```bash
     cp .env.example .env
-    ```
-5. Gere a chave da aplicação:
-    ```bash
-    php artisan key:generate
     ```
 6. Execute as migrações:
     ```bash
