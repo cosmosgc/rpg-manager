@@ -80,6 +80,10 @@ Este é um projeto de gerenciamento de personagens, habilidades, itens e monstro
     ```bash
     cp .env.example .env
     ```
+5. Gere a chave da aplicação:
+    ```bash
+    php artisan key:generate
+    ```
 6. Execute as migrações:
     ```bash
     php artisan migrate
